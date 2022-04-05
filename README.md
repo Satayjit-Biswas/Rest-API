@@ -29,3 +29,41 @@ we know mongodb always create objectId -->
             2. Next 3 bytes (8ad) --> Machine ID.
             3. Next 2 bytes (89) --> Process ID.
             4. Last 3 bytes (02c) --> Incremental Value.
+
+
+
+## mongodb find operator
+    db.collection_name.find({this sector name is query_parameter.you can apply condition this area.},{this area name is projection_parameter})
+        for example:---
+        db.collection_name.find({price:($lt:"1000")},{});
+            >  $lt = less then
+            >  $lte = less then equal
+            >  $gt = greater then
+            >  $gte = greater then equal
+            >  $eq = equal
+            >  $ne = not equal 
+            >  $in = in equal (it's working multiple. so it   work with array)
+            >  $nin = not in equal
+            
+            >>>>> Logical Operators <<<<<<
+                    * $and
+                    * $or
+
+
+            >>>>> find Limit <<<<<<
+                for example :
+                    db.collection_name.find().limit(Number)
+
+
+            >>>>> Sort Records <<<<<<
+                for example :
+                    db.collection_name.find({},{title:1}).sort({title:1}).limit(Number)
+                        
+## mongodb Update operator
+    db.collection_name.updateOne({this sector name is selection_parameter.},{New data})
+        for example:---
+            db.collection_name.updateOne({id: 2868},{$set:{title:"new title", price:"new Price"}});
+
+        
+
+ 
