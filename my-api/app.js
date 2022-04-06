@@ -8,6 +8,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 // Security Middleware implement
 app.use(rateLimit());
 app.use(helmet());
@@ -15,6 +17,7 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 app.use(cors());
+app.use(bodyParser.json());
 
 // for express rate limit
 const Limiter = rateLimit({
@@ -22,6 +25,17 @@ const Limiter = rateLimit({
     max: 100,
 });
 app.use(Limiter);
+
+// mongo db database connection
+// Local laptop Connection
+const URI = "mongodb://127.0.0.1:27017/School";
+const OPTION = { user: "", pass: "" };
+mongoose.connect(URI, OPTION, (err) => {
+    console.log("Database Connection Success ");
+    if (err) {
+        console.log(err);
+    }
+});
 
 app.use("/api/v1", router);
 
